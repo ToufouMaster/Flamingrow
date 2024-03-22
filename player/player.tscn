@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1bd0tw6rep0q"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_7u2x3"]
+[ext_resource type="SpriteFrames" uid="uid://bclrmosk0heyg" path="res://assets/player_sprite_sheet.tres" id="2_1l3x2"]
+[ext_resource type="AudioStream" uid="uid://dsvl08d6e2qy4" path="res://assets/audio/flap_2.wav" id="3_yf4xs"]
+[ext_resource type="AudioStream" uid="uid://c3afeiq3clauo" path="res://assets/audio/flamingo_death_2.wav" id="4_f8g6i"]
+[ext_resource type="AudioStream" uid="uid://u4m2yv30tl48" path="res://assets/audio/hook.wav" id="5_xs3rq"]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_7u2x3")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -4)
+polygon = PackedVector2Array(4, -12, -6, -12, -12, -9, -11, -4, -9, 3, -9, 7, -7, 12, 3, 12, 1, 7, 1, 3, 4, -4)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -48)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("2_1l3x2")
+animation = &"Idle"
+offset = Vector2(0, -16)
+
+[node name="HookRay" type="RayCast2D" parent="."]
+position = Vector2(0, -8)
+target_position = Vector2(0, 250)
+collision_mask = 17
+collide_with_areas = true
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yf4xs")
+bus = &"Sfx"
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_f8g6i")
+volume_db = 5.0
+bus = &"Sfx"
+
+[node name="Hook" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xs3rq")
+volume_db = 5.0
+bus = &"Sfx"

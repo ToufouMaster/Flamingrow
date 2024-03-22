@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://b53pddspk04fx"]
+
+[ext_resource type="Script" path="res://speedrun_timer/speedrun_timer.gd" id="1_re3ch"]
+[ext_resource type="Texture2D" uid="uid://dubuncaymxmfx" path="res://assets/ui_window.png" id="2_tghtv"]
+
+[node name="SpeedrunTimer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_re3ch")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tghtv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Margin" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerLabel" type="Label" parent="Margin"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "0:00.000"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d03b1tqario60"]
+
+[ext_resource type="Script" path="res://speedrun_timer/custom_timer.gd" id="1_w1x6x"]
+
+[node name="CustomTimer" type="Node"]
+script = ExtResource("1_w1x6x")

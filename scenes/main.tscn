@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://blq0tphw3mvnu"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_88r4g"]
+[ext_resource type="PackedScene" uid="uid://bkawgqump2flp" path="res://main_menu/main_menu.tscn" id="2_pq3en"]
+[ext_resource type="PackedScene" uid="uid://cofxc3didmvlh" path="res://scenes/game.tscn" id="3_deqpp"]
+[ext_resource type="PackedScene" uid="uid://ox31gx0dov8m" path="res://ui/radial_fade/radial_fade_animation.tscn" id="4_r01a7"]
+[ext_resource type="AudioStream" uid="uid://3xl8gwgkqm3c" path="res://assets/audio/main_bgm.wav" id="5_tpv3i"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_88r4g")
+main_menu_scene = ExtResource("2_pq3en")
+game_scene = ExtResource("3_deqpp")
+radial_fade_scene = ExtResource("4_r01a7")
+
+[node name="GameBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tpv3i")
+volume_db = -6.0
+bus = &"Music"

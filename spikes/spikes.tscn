@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvtnl5utrehsn"]
+
+[ext_resource type="Script" path="res://spikes/spikes.gd" id="1_xbljn"]
+[ext_resource type="PackedScene" uid="uid://cvn3q12ipc8yw" path="res://spikes/spikes_tile.tscn" id="2_udrfq"]
+
+[node name="Spikes" type="Node2D"]
+script = ExtResource("1_xbljn")
+spikes_tile_scene = ExtResource("2_udrfq")

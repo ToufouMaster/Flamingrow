@@ -1,0 +1,138 @@
+[gd_scene load_steps=20 format=3 uid="uid://cofxc3didmvlh"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_id3p2"]
+[ext_resource type="PackedScene" uid="uid://ut53mrc8cbcj" path="res://levels/level2.tscn" id="2_cu1en"]
+[ext_resource type="PackedScene" uid="uid://bddut0yequafd" path="res://levels/level1.tscn" id="3_1qd3h"]
+[ext_resource type="PackedScene" uid="uid://d1bd0tw6rep0q" path="res://player/player.tscn" id="4_i2hk6"]
+[ext_resource type="PackedScene" uid="uid://s4tx2egrxov1" path="res://levels/level3.tscn" id="4_q2e23"]
+[ext_resource type="PackedScene" uid="uid://ox31gx0dov8m" path="res://ui/radial_fade/radial_fade_animation.tscn" id="5_5a4kh"]
+[ext_resource type="PackedScene" uid="uid://crhtrlov3u2wf" path="res://levels/level4.tscn" id="5_diq22"]
+[ext_resource type="Texture2D" uid="uid://tnpc0hi1jxw" path="res://assets/icon.svg" id="6_57ll6"]
+[ext_resource type="PackedScene" uid="uid://cuq8vxvyqxxf5" path="res://player/player_nodes.tscn" id="6_voc2s"]
+[ext_resource type="PackedScene" uid="uid://bek0a5lby1hog" path="res://levels/level climbup.tscn" id="7_0x1bm"]
+[ext_resource type="PackedScene" uid="uid://b53pddspk04fx" path="res://speedrun_timer/speedrun_timer.tscn" id="7_7w0ue"]
+[ext_resource type="PackedScene" uid="uid://do88dh8stikpq" path="res://levels/level7.tscn" id="7_nb5bu"]
+[ext_resource type="PackedScene" uid="uid://bymnem8n4fcap" path="res://levels/level_bloop.tscn" id="8_re8bk"]
+[ext_resource type="PackedScene" uid="uid://dkqwfqls2irjg" path="res://levels/level_desert_pyramid.tscn" id="9_ixhte"]
+[ext_resource type="Texture2D" uid="uid://dubuncaymxmfx" path="res://assets/ui_window.png" id="11_xqotq"]
+[ext_resource type="AudioStream" uid="uid://dbfuv72uswry2" path="res://assets/audio/mushroom.wav" id="14_en2rv"]
+[ext_resource type="AudioStream" uid="uid://be7ij185yln7l" path="res://assets/audio/shrimp_shrink.wav" id="15_ve8l5"]
+[ext_resource type="AudioStream" uid="uid://dhgfud5ak0gwp" path="res://assets/audio/coin_collect.wav" id="16_arnsn"]
+[ext_resource type="AudioStream" uid="uid://dggefeecmgoaq" path="res://assets/audio/level_complete.wav" id="17_ws3ao"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_id3p2")
+levels = Array[PackedScene]([ExtResource("3_1qd3h"), ExtResource("2_cu1en"), ExtResource("4_q2e23"), ExtResource("5_diq22"), ExtResource("7_nb5bu"), ExtResource("7_0x1bm"), ExtResource("8_re8bk"), ExtResource("9_ixhte")])
+player_scene = ExtResource("4_i2hk6")
+radial_fade_scene = ExtResource("5_5a4kh")
+player_nodes_scene = ExtResource("6_voc2s")
+evening_color_tint = Color(1, 0.831373, 0.541176, 1)
+evening_color_sky = Color(0.847059, 0.760784, 0.564706, 1)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="UI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="UILayer/UI"]
+layout_mode = 1
+anchor_right = 0.25
+anchor_bottom = 0.25
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_xqotq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="UILayer/UI/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarsCollected" type="Control" parent="UILayer/UI"]
+visible = false
+layout_mode = 1
+anchor_right = 0.2
+anchor_bottom = 0.2
+offset_left = 32.0
+offset_top = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/UI/StarsCollected"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/UI/StarsCollected/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_57ll6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StarsLabel" type="Label" parent="UILayer/UI/StarsCollected/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedrunTimer" parent="UILayer/UI" instance=ExtResource("7_7w0ue")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_bottom = 0.25
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+mouse_filter = 1
+
+[node name="Mushroom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_en2rv")
+bus = &"Sfx"
+
+[node name="Shrimp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ve8l5")
+bus = &"Sfx"
+
+[node name="Coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_arnsn")
+bus = &"Sfx"
+
+[node name="Goal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_ws3ao")
+bus = &"Sfx"

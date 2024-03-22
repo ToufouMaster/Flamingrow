@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4o80nncp8fp2"]
+
+[ext_resource type="Script" path="res://collectible/collectible.gd" id="1_gechv"]
+[ext_resource type="Texture2D" uid="uid://dv17ce5wbcqx" path="res://assets/items/shrimp.png" id="2_fymrb"]
+[ext_resource type="Shader" uid="uid://cja1k4fc0nyy8" path="res://collectible/bright1.tres" id="2_s8dlt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f87v6"]
+shader = ExtResource("2_s8dlt")
+shader_parameter/FloatParameter = 0.375
+shader_parameter/ColorParameter = Color(1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_kk38c"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j5eu8"]
+gradient = SubResource("Gradient_kk38c")
+width = 100
+height = 100
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8s5xi"]
+radius = 14.0
+
+[node name="SmallMushroom" type="Node2D"]
+script = ExtResource("1_gechv")
+collectible_type = 4
+
+[node name="ShaderSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_f87v6")
+texture = SubResource("GradientTexture2D_j5eu8")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = -0.2313
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_fymrb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8s5xi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

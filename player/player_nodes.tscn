@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuq8vxvyqxxf5"]
+
+[ext_resource type="Script" path="res://player/hook.gd" id="1_gx0ng"]
+[ext_resource type="Texture2D" uid="uid://b6bix2ax2btuw" path="res://assets/flamingo.png" id="2_yxk4t"]
+[ext_resource type="Texture2D" uid="uid://cuvttlrbqeues" path="res://assets/hook_target_red.png" id="3_4cm85"]
+[ext_resource type="Texture2D" uid="uid://c8fylrunuufhm" path="res://assets/hook_target.png" id="4_2dguc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nmbic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4cm85")
+}],
+"loop": true,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2dguc")
+}],
+"loop": true,
+"name": &"Inactive",
+"speed": 5.0
+}]
+
+[node name="PlayerNodes" type="Node2D"]
+
+[node name="Target" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nmbic")
+animation = &"Active"
+
+[node name="Hook" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_gx0ng")
+
+[node name="BorderLine2D" type="Line2D" parent="Hook"]
+points = PackedVector2Array(-9, 30, 0, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Hook"]
+points = PackedVector2Array(-9, 30, 0, 0)
+width = 3.0
+default_color = Color(1, 0.635294, 0.67451, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Hook"]
+texture_filter = 1
+rotation = -2.35619
+texture = ExtResource("2_yxk4t")
+offset = Vector2(-4, 10)
+hframes = 7
+vframes = 6
+frame = 36

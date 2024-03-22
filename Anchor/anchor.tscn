@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://beyjg6ut2bc05"]
+
+[ext_resource type="Script" path="res://Anchor/anchor.gd" id="1_76rex"]
+[ext_resource type="Texture2D" uid="uid://bssjm5gqhdw8s" path="res://assets/pixel_tile test.png" id="1_e6ko0"]
+[ext_resource type="Shader" uid="uid://iv8w63a0wuhs" path="res://Anchor/anchor.tres" id="2_xt1ri"]
+[ext_resource type="AnimationLibrary" uid="uid://dyu6b10kyihe4" path="res://Anchor/anchor_animation.res" id="4_4ttep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opeom"]
+radius = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sh63o"]
+shader = ExtResource("2_xt1ri")
+shader_parameter/FloatParameter = 0.0
+shader_parameter/ColorParameter = Color(1, 0.522, 0.608, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_hg6ud"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oqfhy"]
+gradient = SubResource("Gradient_hg6ud")
+width = 100
+height = 100
+
+[node name="Anchor" type="Node2D"]
+script = ExtResource("1_76rex")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_opeom")
+
+[node name="ShaderSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sh63o")
+texture = SubResource("GradientTexture2D_oqfhy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_e6ko0")
+hframes = 14
+vframes = 6
+frame = 42
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("4_4ttep")
+}

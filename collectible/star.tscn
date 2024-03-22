@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8a3q3am7xbw0"]
+
+[ext_resource type="Script" path="res://collectible/collectible.gd" id="1_f07ln"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8s5xi"]
+radius = 56.0
+
+[node name="Star" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_f07ln")
+collectible_type = 2
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8s5xi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
